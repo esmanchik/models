@@ -9,3 +9,10 @@ The [research models](https://github.com/tensorflow/models/tree/master/research)
 The [samples folder](samples) contains code snippets and smaller models that demonstrate features of TensorFlow, including code presented in various blog posts.
 
 The [tutorials folder](tutorials) is a collection of models described in the [TensorFlow tutorials](https://www.tensorflow.org/tutorials/).
+
+
+### Build and run Object Detection Docker container
+```
+sudo nvidia-docker build --tag tensorflow-models-object-detection .
+sudo nvidia-docker run --rm -it -v `cd .. && pwd`:/root/tf tensorflow-models-object-detection
+```
