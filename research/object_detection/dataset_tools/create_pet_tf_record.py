@@ -156,18 +156,18 @@ def dict_to_tf_example(data,
 
     class_name = obj['name'] if 'name' in obj \
                  else get_class_name_from_filename(data['filename'])
-
-    xmins.append(xmin / width)
-    ymins.append(ymin / height)
-    xmaxs.append(xmax / width)
-    ymaxs.append(ymax / height)
-    classes_text.append(class_name.encode('utf8'))
-    classes.append(label_map_dict[class_name])
-    truncated.append(int(obj['truncated']))
-    poses.append(obj['pose'].encode('utf8'))
-    if not faces_only:
-      mask_remapped = (mask_np != 2).astype(np.uint8)
-      masks.append(mask_remapped)
+    if class_name in label_map_dict:
+      xmins.append(xmin / width)
+      ymins.append(ymin / height)
+      xmaxs.append(xmax / width)
+      ymaxs.append(ymax / height)
+      classes_text.append(class_name.encode('utf8'))
+      classes.append(label_map_dict[class_name])
+      truncated.append(int(obj['truncated']))
+      poses.append(obj['pose'].encode('utf8'))
+      if not faces_only:
+        mask_remapped = (mask_np != 2).astype(np.uint8)
+        masks.append(mask_remapped)
 
   feature_dict = {
       'image/height': dataset_util.int64_feature(height),
