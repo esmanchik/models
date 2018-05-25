@@ -17,3 +17,9 @@ If you want to contribute to models, be sure to review the [contribution guideli
 ## License
 
 [Apache License 2.0](LICENSE)
+
+### Build and run Object Detection Docker container
+```
+sudo nvidia-docker build --tag tensorflow-models-object-detection .
+sudo nvidia-docker run --rm -it -v `cd .. && pwd`:/root/tf tensorflow-models-object-detection
+```
